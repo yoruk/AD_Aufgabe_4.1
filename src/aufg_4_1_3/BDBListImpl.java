@@ -62,11 +62,7 @@ public class BDBListImpl<E> implements BDBList<E> {
     		
     	/* ansonsten temporaeren baum erstellen */
     	} else {
-    		if(elements == 2) {
-    			tmp_tree = new Node(2);
-    		} else {
-    			tmp_tree = new Node((elements / 2) + 1);    			
-    		}
+    		tmp_tree = new Node((elements / 2) + 1);
     	}
     	
     	/* alten baum auslesen und inhalt in neuen baum schreiben */
