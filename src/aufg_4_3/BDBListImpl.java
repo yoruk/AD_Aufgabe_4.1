@@ -5,8 +5,8 @@ public class BDBListImpl<E> implements BDBList<E> {
 		public E DATA = null;
 		public int list_index = 0;
 		public final int rValue;
-		public Node lNode = null;
-		public Node rNode = null;
+		public final Node lNode;
+		public final Node rNode;
 		
 		public Node(int rValue) {
 			int next_rValue = 0;
@@ -22,11 +22,14 @@ public class BDBListImpl<E> implements BDBList<E> {
 			
 			/* weitere nodes erstellen wenn wir nicht 
 			  schon auf der untersten ebene sind */
-			if(rValue != -1 && rValue != 1) {
+			if(rValue != 1) {
 				next_rValue = (rValue / 2) + (rValue % 2);
 				
 				lNode = new Node(-next_rValue);
 				rNode = new Node(next_rValue);
+			} else {
+				lNode = null;
+				rNode = null;
 			}
 		}
     }
@@ -35,7 +38,7 @@ public class BDBListImpl<E> implements BDBList<E> {
     private int elements = 0;
     
     /* postion: anfang=true, ende=false */
-    public boolean add(E e, boolean position) {
+    private boolean add(E e, boolean position) {
     	if(e == null) {
     		return false;
     	}
@@ -153,7 +156,6 @@ public class BDBListImpl<E> implements BDBList<E> {
     				} else {
     					break;
     				}
-
     			}
 
     			/* ist der derzeitige node, der den mann sucht? */
